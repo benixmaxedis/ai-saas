@@ -56,7 +56,7 @@ const VideoPage = () => {
     <div>
       <Heading
         title="Video Generation"
-        description="What video would you like me to generate?"
+        description="Turn your prompt into video."
         icon={Video}
         iconColor="text-orange-700"
         bgColor="bg-orange-700/10"
@@ -75,7 +75,7 @@ const VideoPage = () => {
                     <Input
                       className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                       disabled={isLoading}
-                      placeholder="Clown fish swimming around a coral reef"
+                      placeholder="What video would you like me to generate? Eg. A clown fish"
                       {...field}
                     ></Input>
                   </FormControl>
