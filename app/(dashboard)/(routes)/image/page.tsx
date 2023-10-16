@@ -98,8 +98,8 @@ const ImagePage = () => {
               )}
             />
             <FormField
-              name="amount"
               control={form.control}
+              name="amount"
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-2">
                   <Select
@@ -109,11 +109,11 @@ const ImagePage = () => {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-background">
                         <SelectValue defaultValue={field.value} />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="bg-background pr-48">
                       {amountOptions.map((option) => (
                         <SelectItem value={option.value} key={option.value}>
                           {option.label}
@@ -140,7 +140,7 @@ const ImagePage = () => {
                         <SelectValue defaultValue={field.value} />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="bg-background pr-48">
                       {resolutionOptions.map((option) => (
                         <SelectItem value={option.value} key={option.value}>
                           {option.label}
