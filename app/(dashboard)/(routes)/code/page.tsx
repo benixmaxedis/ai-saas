@@ -89,7 +89,7 @@ const CodePage = () => {
                     <Input
                       className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                       disabled={isLoading}
-                      placeholder="Generate a simple web page using javascript, html and css."
+                      placeholder="What code would you like me to generate? Eg. A website"
                       {...field}
                     ></Input>
                   </FormControl>
