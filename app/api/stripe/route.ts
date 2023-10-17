@@ -1,8 +1,9 @@
+import { auth, currentUser } from '@clerk/nextjs';
+import { NextResponse } from 'next/server';
+
 import prismadb from '@/lib/prismadb';
 import { stripe } from '@/lib/stripe';
 import { absoluteUrl } from '@/lib/utils';
-import { auth, currentUser } from '@clerk/nextjs';
-import { NextResponse } from 'next/server';
 
 const settingsUrl = absoluteUrl('/settings');
 
@@ -12,11 +13,13 @@ export async function GET() {
     const user = await currentUser();
 
     if (!userId || !user) {
-      return new NextResponse('Unauthorised', { status: 401 });
+      return new NextResponse('Unauthorized', { status: 401 });
     }
 
     const userSubscription = await prismadb.userSubscription.findUnique({
-      where: { userId },
+      where: {
+        userId,
+      },
     });
 
     if (userSubscription && userSubscription.stripeCustomerId) {
@@ -38,12 +41,12 @@ export async function GET() {
       line_items: [
         {
           price_data: {
-            currency: 'AUD',
+            currency: 'USD',
             product_data: {
               name: 'Genius Pro',
               description: 'Unlimited AI Generations',
             },
-            unit_amount: 295,
+            unit_amount: 2000,
             recurring: {
               interval: 'month',
             },
@@ -59,6 +62,6 @@ export async function GET() {
     return new NextResponse(JSON.stringify({ url: stripeSession.url }));
   } catch (error) {
     console.log('[STRIPE_ERROR]', error);
-    return new NextResponse('Internal error', { status: 500 });
+    return new NextResponse('Internal Error', { status: 500 });
   }
 }
